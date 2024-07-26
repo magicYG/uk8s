@@ -44,16 +44,16 @@ cat << EOF | kubectl create -f -
  spec:
    restartPolicy: OnFailure
    containers:
-   - name: dcgmproftester11
-     image: uhub.service.ucloud.cn/uk8s/dcgmproftester
-     args: ["--no-dcgm-validation", "-t 1004", "-d 120"]
+   - name: dcgmproftester12
+     image: uhub.service.ucloud.cn/uk8s/dcgm:3.3.0
+     command: ["/usr/bin/dcgmproftester12"]
+     args: ["--no-dcgm-validation", "-t 1004", "-d 30"] 
      resources:
        limits:
-          nvidia.com/gpu: 1
+         nvidia.com/gpu: 1
      securityContext:
        capabilities:
-          add: ["SYS_ADMIN"]
-
+         add: ["SYS_ADMIN"]
 EOF
 ```
 
